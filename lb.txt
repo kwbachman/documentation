@@ -1,0 +1,101 @@
+#
+# Logging configuration
+#
+[logging]
+level = "error"
+output = "/usr/local/bin/gobetween.log"
+
+[servers]
+
+# ---------------------- API ------------------------- #
+
+[servers.api]
+protocol = "tcp"
+bind = "0.0.0.0:6443"
+
+[servers.api.discovery]
+  kind = "static"
+  static_list = [ "192.168.10.30:6443" ]
+
+[servers.api.healthcheck]
+  kind = "ping"
+  fails = 1
+  passes = 1
+  interval = "2s"
+  timeout="1s"
+  ping_timeout_duration = "500ms"
+
+
+# ---------- Machine Configuration Service ----------- #
+
+[servers.mcs]
+protocol = "tcp"
+bind = "0.0.0.0:22623"
+
+[servers.mcs.discovery]
+  kind = "static"
+  static_list = [ "192.168.10.30:22623" ]
+
+[servers.mcs.healthcheck]
+  kind = "ping"
+  fails = 1
+  passes = 1
+  interval = "2s"
+  timeout="1s"
+  ping_timeout_duration = "500ms"
+
+
+# ---------------- Application HTTP ------------------ #
+
+[servers.http]
+protocol = "tcp"
+bind = "0.0.0.0:80"
+
+[servers.http.discovery]
+  kind = "static"
+  static_list = [ "192.168.10.30:80","192.168.10.41:80","192.168.10.42:80" ]
+
+[servers.http.healthcheck]
+  kind = "ping"
+  fails = 1
+  passes = 1
+  interval = "2s"
+  timeout="1s"
+  ping_timeout_duration = "500ms"
+
+
+# ---------------- Application HTTPS ------------------ #
+
+[servers.https]
+protocol = "tcp"
+bind = "0.0.0.0:443"
+
+[servers.https.discovery]
+  kind = "static"
+  static_list = [ "192.168.10.30:443","192.168.10.41:443","192.168.10.42:443" ]
+
+[servers.https.healthcheck]
+  kind = "ping"
+  fails = 1
+  passes = 1
+  interval = "2s"
+  timeout="1s"
+  ping_timeout_duration = "500ms"
+
+# ---------------------- Database --------------------- #
+
+[servers.db]
+protocol = "tcp"
+bind = "0.0.0.0:27017"
+
+[servers.db.discovery]
+  kind = "static"
+  static_list = [ "192.168.10.30:27017","192.168.10.41:27017","192.168.10.42:27017" ]
+
+[servers.db.healthcheck]
+  kind = "ping"
+  fails = 1
+  passes = 1
+  interval = "2s"
+  timeout="1s"
+  ping_timeout_duration = "500ms"

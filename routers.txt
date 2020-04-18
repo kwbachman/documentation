@@ -1,0 +1,50 @@
+[tcp.routers]
+
+[tcp.routers.ocp-api]
+  entryPoints = ["api"] #entry points are shared among the clusters
+  rule = "HostSNI(`api.ocp.ext.io`)"
+  service = "service-ocp-api"
+  [tcp.routers.ocp-api.tls]
+  passthrough = true
+
+[tcp.routers.ocp-https]
+  entryPoints = ["https"]
+  rule = "HostSNI(`oauth-openshift.apps.ocp.ext.io`,`console-openshift-console.apps.ocp.ext.io`,`invest.apps.ocp.ext.io`)"
+  service = "service-ocp-https"
+  [tcp.routers.ocp-https.tls]
+  passthrough = true
+
+[tcp.routers.ocp-db]
+  entryPoints = ["db"] #entry points are shared among the clusters
+  rule = "HostSNI(`mongodb.apps.ocp.ext.io`)"
+  service = "service-ocp-db"
+
+
+[http.routers]
+
+[http.routers.ocp-http]
+  entryPoints = ["web"]
+  rule = "Host(`invest.apps.ocp.ext.io`)"
+  service = "service-ocp-http"
+
+
+
+[tcp.services]
+
+[tcp.services.service-ocp-api.loadBalancer]
+[[tcp.services.service-ocp-api.loadBalancer.servers]]
+  address = "192.168.10.49:6443"
+
+[tcp.services.service-ocp-https.loadBalancer]
+[[tcp.services.service-ocp-https.loadBalancer.servers]]
+  address = "192.168.10.49:443"
+
+[tcp.services.service-ocp-db.loadBalancer]
+[[tcp.services.service-ocp-db.loadBalancer.servers]]
+  address = "192.168.10.49:27017"
+
+[http.services]
+
+[http.services.service-ocp-http.loadBalancer]
+[[http.services.service-ocp-http.loadBalancer.servers]]
+  url = "http://invest.apps.ocp.ext.io/"

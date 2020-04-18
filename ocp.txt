@@ -1,0 +1,17 @@
+// --- Instructions for recreating the invest project ---
+
+oc delete project invest
+
+// Persistent volume recycler not working correctly, manually remove/recreate
+oc delete pv/pv01
+cd /opt/nfs/pv01
+rm -rf 
+oc create -f pv.yaml
+
+oc new-project invest
+oc process -n openshift nodejs-mongo-persistent --param-file=folio.env | oc create -f -
+oc delete route invest
+oc create route edge --service=invest --hostname=invest.apps.ocp.ext.io
+
+// Expose MongoDB to workstations on network
+oc expose service mongodb --hostname=mongodb.apps.ocp.ext.io

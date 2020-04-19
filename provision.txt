@@ -2,6 +2,8 @@
 
 // oc rsh <mongodb-pod>
 // mongo foliodb -u user -p password
+// or from remote workstation
+// mongo "mongodb://dbuser:dbusernnn@192.168.1.2:27107/foliodb"
 // > show collections (I think the collections are auto-created when clicking login button but they are empty)
 
 // > db.investments.save({ investor: 'kevin', password: 'kevin1', investments: [{  symbol: 'btc',  shares: 0.028644 }, {  symbol: 'iot',  shares: 100 }, {  symbol: 'eth',  shares: 0.25 }]})

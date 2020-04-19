@@ -81,21 +81,3 @@ bind = "0.0.0.0:443"
   interval = "2s"
   timeout="1s"
   ping_timeout_duration = "500ms"
-
-# ---------------------- Database --------------------- #
-
-[servers.db]
-protocol = "tcp"
-bind = "0.0.0.0:27017"
-
-[servers.db.discovery]
-  kind = "static"
-  static_list = [ "192.168.10.30:27017","192.168.10.41:27017","192.168.10.42:27017" ]
-
-[servers.db.healthcheck]
-  kind = "ping"
-  fails = 1
-  passes = 1
-  interval = "2s"
-  timeout="1s"
-  ping_timeout_duration = "500ms"

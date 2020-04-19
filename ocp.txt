@@ -14,4 +14,8 @@ oc delete route invest
 oc create route edge --service=invest --hostname=invest.apps.ocp.ext.io
 
 // Expose MongoDB to workstations on network
-oc expose service mongodb --hostname=mongodb.apps.ocp.ext.io
+//   Routes can only expose http services so port forwarding must be used instead
+//   Run the following command on a machine with the OC client.  Then connect your 
+//   workstation to this machine via IP address.
+oc port-forward --address 0.0.0.0 pod/mongodb-1-4clpw 27017:27017
+

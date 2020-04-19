@@ -14,11 +14,6 @@
   [tcp.routers.ocp-https.tls]
   passthrough = true
 
-[tcp.routers.ocp-db]
-  entryPoints = ["db"] #entry points are shared among the clusters
-  rule = "HostSNI(`mongodb.apps.ocp.ext.io`)"
-  service = "service-ocp-db"
-
 
 [http.routers]
 
@@ -39,9 +34,6 @@
 [[tcp.services.service-ocp-https.loadBalancer.servers]]
   address = "192.168.10.49:443"
 
-[tcp.services.service-ocp-db.loadBalancer]
-[[tcp.services.service-ocp-db.loadBalancer.servers]]
-  address = "192.168.10.49:27017"
 
 [http.services]
 

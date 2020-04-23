@@ -6,7 +6,7 @@
 // mongo "mongodb://dbuser:dbusernnn@192.168.1.2:27107/foliodb"
 // > show collections (I think the collections are auto-created when clicking login button but they are empty)
 
-// > db.investments.save({ investor: 'kevin', password: 'kevin1', investments: [{  symbol: 'btc',  shares: 0.028644 }, {  symbol: 'iot',  shares: 100 }, {  symbol: 'eth',  shares: 0.25 }]})
+// > db.investments.save({ investor: 'kevin', password: 'kevin1', investments: [{  symbol: 'btc',  shares: 0.028644 }, {  symbol: 'miota',  shares: 100 }, {  symbol: 'eth',  shares: 0.25 }]})
 // > db.investments.find()
 
 // The users document can be initialized by calling the register api as shown at the bottom of the users.js model

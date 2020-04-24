@@ -9,7 +9,7 @@
 // > db.investments.save({ investor: 'kevin', password: 'kevin1', investments: [{  symbol: 'btc',  shares: 0.028644 }, {  symbol: 'miota',  shares: 100 }, {  symbol: 'eth',  shares: 0.25 }]})
 // > db.investments.find()
 
-// The users document can be initialized by calling the register api as shown at the bottom of the users.js model
+// The users document can be initialized by calling the register api as shown at the bottom of the users.js model or at the bottom this document
 // > db.users.find()
 
 // Some other sample queries below:

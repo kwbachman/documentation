@@ -19,3 +19,4 @@ oc create route edge --service=invest --hostname=invest.apps.ocp.ext.io
 //   workstation to this machine via IP address.
 oc port-forward --address 0.0.0.0 pod/mongodb-1-4clpw 27017:27017
 
+// Alternatively, setup a local instance of MongoDB on workstation
